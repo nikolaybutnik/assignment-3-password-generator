@@ -18,6 +18,7 @@ function displayNewPassword() {
 }
 
 // Define a function that asks the user for password generation criteria, and logs the answers as an array.
+// Ask for how long the password should be and assign the answer to a variable.
 function getCriteria() {
   let lowercaseYesNo = confirm(
     "Include lowercase letters? Ok = Yes, Cancel = No"
@@ -29,6 +30,15 @@ function getCriteria() {
   let specialYesNo = confirm(
     "Include special characters? Ok = Yes, Cancel = No"
   );
+  var howLong = prompt(
+    "How long should your password be? Must be between 8 and 128 characters long."
+  );
+  // Continually ask user for input until the response meeets length criteria.
+  while (howLong < 8 || howLong > 128) {
+    var howLong = prompt(
+      "Your password must be between 8 and 128 Character long."
+    );
+  }
   userCriteria = [];
   if (lowercaseYesNo === true) {
     userCriteria.push("lowercase");
@@ -43,6 +53,7 @@ function getCriteria() {
     userCriteria.push("special");
   }
   console.log(userCriteria);
+  console.log(howLong);
   return userCriteria;
 }
 
@@ -145,7 +156,8 @@ function generatePassword(criteria) {
   // Define a new array to be used for the final password generation.
   let concatArray = [];
   // Check the user's criteria responses, and concatenate the empty array with the relevant character arrays.
-  // Use the spread operator (...) to
+  // Use the spread operator (...) to spread out the items in each individual array into different arguments
+  // and push them to the new array.
   if (criteria.includes("lowercase") === true) {
     concatArray.push(...lowercaseLetters);
   }
@@ -160,4 +172,5 @@ function generatePassword(criteria) {
   }
   console.log(concatArray);
   // Use a for loop to create a new array based on the resulted array, with scrambled characters.
+  // For length, use the user defined value in howLong.
 }
