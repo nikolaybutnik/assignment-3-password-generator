@@ -72,8 +72,6 @@ function getCriteria() {
     userCriteria.push("special");
   }
   userCriteria.push(howLong);
-  console.log(userCriteria);
-  console.log(howLong);
   // make sure the user enters at least one criteria. If the array only has the howLong value (always present), alert the user.
   // Else, return the userCriteria as a product of the getCriteria function to be used in displayNewPassword function.
   if (userCriteria.length === 1) {
@@ -192,7 +190,6 @@ function generatePassword(criteria) {
   if (criteria.includes("numbers") === true) {
     concatArray.push(...numbers);
   }
-  console.log(concatArray);
   // Use a for loop to create a new array based on the resulted array. Scramble the order of characters
   // by calling a random number, and using the number as index to append item at index to new list.
   // For length, use the user defined value that has been appended to the end of the criteria array.
@@ -200,10 +197,7 @@ function generatePassword(criteria) {
   for (i = 0; i < criteria[criteria.length - 1]; i++) {
     let randInt = Math.floor(Math.random() * concatArray.length);
     randArray.push(concatArray[randInt]);
-    console.log(randInt);
   }
-  console.log(randArray);
-  console.log(randArray.toString().replace(/,/g, ""));
   // Convert the array into a string, and get rid of all commas in the string.
   // Return the completed string as a product of the generatePassword function to be used in displayNewPassword function.
   return randArray.toString().replace(/,/g, "");
