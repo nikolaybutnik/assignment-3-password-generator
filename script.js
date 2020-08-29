@@ -11,9 +11,13 @@ generateBtn.addEventListener("click", displayNewPassword);
 
 // Define a function that will output the password and push it to the screen.
 function displayNewPassword() {
+  // criteria is an array of user selections.
   let criteria = getCriteria();
+  // password is a result of a function that takes criteria array as an argument and processes it to return a string of scrambled characters.
   let password = generatePassword(criteria);
+  // passwordText is a reference to the HTML that displays the generated password to the user.
   let passwordText = document.getElementById("password");
+  // Update the passwordText once the string has been generated.
   passwordText.value = password;
 }
 
@@ -57,7 +61,7 @@ function getCriteria() {
   console.log(userCriteria);
   console.log(howLong);
   // make sure the user enters at least one criteria. If the array only has the howLong value, alert the user.
-  // Else, return the userCriteria as a product of the getCriteria function.
+  // Else, return the userCriteria as a product of the getCriteria function to be used in displayNewPassword function.
   if (userCriteria.length === 1) {
     alert(
       "You need to select a criteria for password generation. Generate password again and select criteria."
@@ -185,4 +189,8 @@ function generatePassword(criteria) {
     console.log(randInt);
   }
   console.log(randArray);
+  console.log(randArray.toString().replace(/,/g, ""));
+  // Convert the array into a string, and get rid of all commas in the string.
+  // Return the completed string as a product of the generatePassword function to be used in displayNewPassword function.
+  return randArray.toString().replace(/,/g, "");
 }
