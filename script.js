@@ -24,6 +24,28 @@ function displayNewPassword() {
 // Define a function that asks the user for password generation criteria, and logs the answers as an array.
 // Ask for how long the password should be and assign the answer to a variable.
 function getCriteria() {
+  var howLong = prompt(
+    "How long should your password be? Must be between 8 and 128 characters long."
+  );
+  // Break out of the code if user clicks cancel.
+  if (howLong === null) {
+    return;
+  }
+  // Continually ask user for input until the response meeets 8 to 128 character length criteria.
+  // Make sure value entered is an integer. Multiply howLong by 1 to make sure value being checked is a number and not a string.
+  while (
+    howLong < 8 ||
+    howLong > 128 ||
+    Number.isInteger(howLong * 1) === false
+  ) {
+    var howLong = prompt(
+      "Your password must be between 8 and 128 characters long and use whole numbers."
+    );
+    // Break out of the loop if user clicks cancel.
+    if (howLong === null) {
+      return;
+    }
+  }
   let lowercaseYesNo = confirm(
     "Include lowercase letters? Ok = Yes, Cancel = No"
   );
@@ -34,15 +56,7 @@ function getCriteria() {
   let specialYesNo = confirm(
     "Include special characters? Ok = Yes, Cancel = No"
   );
-  var howLong = prompt(
-    "How long should your password be? Must be between 8 and 128 characters long."
-  );
-  // Continually ask user for input until the response meeets length criteria.
-  while (howLong < 8 || howLong > 128) {
-    var howLong = prompt(
-      "Your password must be between 8 and 128 Character long."
-    );
-  }
+
   // Create an empty array and append it with user selections.
   userCriteria = [];
   if (lowercaseYesNo === true) {
@@ -60,7 +74,7 @@ function getCriteria() {
   userCriteria.push(howLong);
   console.log(userCriteria);
   console.log(howLong);
-  // make sure the user enters at least one criteria. If the array only has the howLong value, alert the user.
+  // make sure the user enters at least one criteria. If the array only has the howLong value (always present), alert the user.
   // Else, return the userCriteria as a product of the getCriteria function to be used in displayNewPassword function.
   if (userCriteria.length === 1) {
     alert(
@@ -181,7 +195,7 @@ function generatePassword(criteria) {
   console.log(concatArray);
   // Use a for loop to create a new array based on the resulted array. Scramble the order of characters
   // by calling a random number, and using the number as index to append item at index to new list.
-  // For length, use the user defined value that is appended to the end of the criteria variable.
+  // For length, use the user defined value that has been appended to the end of the criteria array.
   randArray = [];
   for (i = 0; i < criteria[criteria.length - 1]; i++) {
     let randInt = Math.floor(Math.random() * concatArray.length);
