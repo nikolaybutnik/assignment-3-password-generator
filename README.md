@@ -11,11 +11,11 @@ The purpose of this application is to collect user input on the criteria they wa
 
 Upon clicking the **Generate Password** button, the application will prompt the user to answer a series of questions.
 
+- How long will the password be? Length must be between 8 and 128 characters.
 - Will lowercase characters be included in the password?
 - Will uppercase characters be included in the password?
 - Will numbers be included in the password?
 - Will special characters be included in the password?
-- How long will the password be? Length must be between 8 and 128 characters.
 
 The resulting randomized string of characters will then be displayed in the text field. To generate another password, click the **Generate Password** button again and follow the onscreen prompts.
 
